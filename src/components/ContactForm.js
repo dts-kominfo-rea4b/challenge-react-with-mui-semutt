@@ -8,6 +8,7 @@ import {
     Box,
     TextField,
     Button,
+    FormControl
 } from "@mui/material";
 
 const ContactForm = ({addContact}) => {
@@ -29,8 +30,6 @@ const ContactForm = ({addContact}) => {
         phone.value = "";
         email.value = "";
         photo.value = "";
-        
-        console.log(formData);
     
         addContact(formData);
     };
@@ -49,13 +48,15 @@ const ContactForm = ({addContact}) => {
             noValidate
             autoComplete="off"
             >
-            <div>
-                <TextField id="name" label="Name" variant="filled" type="text" sx={{ mt: 3 }} />
-                <TextField id="phone" label="Phone" variant="filled" type="number" />
-                <TextField id="email" label="Email" variant="filled" type="email" />
-                <TextField id="photo" label="Photo URL" variant="filled" type="url" />
-            </div>
-            <Button variant="text" onClick={handleAddContact}>Add New</Button>
+            <form onSubmit={handleAddContact}>
+                <div>
+                    <TextField id="name" name="name" label="Name" variant="filled" type="text" sx={{ mt: 3 }} />
+                    <TextField id="phone" name="phone" label="Phone" variant="filled"  />
+                    <TextField id="email" name="email" label="Email" variant="filled" type="text" />
+                    <TextField id="photo" name="photo" label="Photo URL" variant="filled" type="url" />
+                </div>
+                <Button variant="text" type="submit">Add New</Button>
+            </form>
         </Box>
     );
 }
